@@ -1,0 +1,354 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Service Card Hover Effect (Lily-inspired) */
+.service-hover-effect {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+}
+.service-hover-effect img {
+  transition: transform 0.5s;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.service-hover-effect .service-hover-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.4s;
+  z-index: 2;
+  padding: 2rem;
+  text-align: center;
+}
+.service-hover-effect:hover img {
+  transform: scale(1.1);
+}
+.service-hover-effect:hover .service-hover-overlay {
+  opacity: 1;
+}
+
+/* Caption Hover Effect (Effect 6 - Codrops) for Contact Cards */
+.caption-hover-effect {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  transition: box-shadow 0.3s;
+}
+.caption-hover-effect .caption-hover-content {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  background: rgba(34, 197, 94, 0.95); /* green overlay, adjust as needed */
+  color: #fff;
+  padding: 2rem 1rem 1.5rem 1rem;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.4s cubic-bezier(.7,0,.3,1);
+  border-bottom-left-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+  text-align: center;
+}
+.caption-hover-effect:hover .caption-hover-content,
+.caption-hover-effect:focus-within .caption-hover-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+.caption-hover-effect .caption-hover-icon {
+  transition: transform 0.4s cubic-bezier(.7,0,.3,1);
+}
+.caption-hover-effect:hover .caption-hover-icon,
+.caption-hover-effect:focus-within .caption-hover-icon {
+  transform: scale(1.15) rotate(-8deg);
+}
+
+/* Enhanced Stats Hover Effects */
+.stats-hover-effect {
+  background: white;
+  border-radius: 12px;
+  padding: 40px 30px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.stats-hover-effect:nth-child(1) { animation-delay: 0.1s; }
+.stats-hover-effect:nth-child(2) { animation-delay: 0.2s; }
+.stats-hover-effect:nth-child(3) { animation-delay: 0.3s; }
+.stats-hover-effect:nth-child(4) { animation-delay: 0.4s; }
+
+.stats-hover-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.stats-hover-effect:hover::before {
+  left: 100%;
+}
+
+.stats-hover-effect:hover {
+  transform: translateY(-15px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+  background: white;
+  border-color: #dbeafe;
+}
+
+.stats-hover-effect .stats-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  background: #3b82f6;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.stats-hover-effect:hover .stats-icon {
+  transform: scale(1.2) rotate(10deg);
+  background: #1d4ed8;
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+.stats-hover-effect .stats-icon::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.stats-hover-effect:hover .stats-icon::after {
+  border-color: #3b82f6;
+  transform: scale(1.1);
+}
+
+.stats-hover-effect .stats-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: white;
+  transition: all 0.3s ease;
+}
+
+.stats-hover-effect:hover .stats-icon svg {
+  fill: white;
+  transform: scale(1.1);
+}
+
+.stats-hover-effect .stats-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 10px;
+  transition: all 0.4s ease;
+}
+
+.stats-hover-effect:hover .stats-number {
+  transform: scale(1.1);
+  color: #3b82f6;
+  text-shadow: 0 5px 15px rgba(59, 130, 246, 0.2);
+  animation: pulse 2s infinite;
+}
+
+.stats-hover-effect .stats-label {
+  font-size: 1.1rem;
+  color: #6b7280;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.stats-hover-effect:hover .stats-label {
+  color: #111827;
+  transform: translateY(-2px);
+}
+
+.stats-hover-effect .stats-label::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #3b82f6;
+  transition: all 0.4s ease;
+  transform: translateX(-50%);
+  border-radius: 1px;
+}
+
+.stats-hover-effect:hover .stats-label::after {
+  width: 80%;
+}
+
+/* Individual card themes */
+.stats-hover-effect:nth-child(1):hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), white);
+}
+
+.stats-hover-effect:nth-child(2):hover {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), white);
+}
+
+.stats-hover-effect:nth-child(3):hover {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), white);
+}
+
+.stats-hover-effect:nth-child(4):hover {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), white);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1.1); }
+  50% { transform: scale(1.15); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .stats-hover-effect {
+    padding: 30px 20px;
+  }
+
+  .stats-hover-effect .stats-number {
+    font-size: 2.5rem;
+  }
+
+  .stats-hover-effect .stats-label {
+    font-size: 1rem;
+  }
+}
+
+/* Learn More Button Hover Effect */
+.learn-more-button {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+  width: 12rem;
+  height: auto;
+}
+
+.learn-more-button .circle {
+  transition: all 0.45s cubic-bezier(0.65,0,.076,1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: #3b82f6; /* Blue to match website */
+  border-radius: 1.625rem;
+}
+
+.learn-more-button .icon {
+  transition: all 0.45s cubic-bezier(0.65,0,.076,1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+
+.learn-more-button .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65,0,.076,1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+
+.learn-more-button .icon.arrow::before {
+  position: absolute;
+  content: '';
+  top: -0.25rem;
+  right: 0.0625rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+.learn-more-button .button-text {
+  transition: all 0.45s cubic-bezier(0.65,0,.076,1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: #3b82f6; /* Blue to match website */
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.learn-more-button:hover .circle {
+  width: 100%;
+  background: #1d4ed8; /* Darker blue on hover */
+}
+
+.learn-more-button:hover .icon.arrow {
+  background: #fff;
+  transform: translate(1rem, 0);
+}
+
+.learn-more-button:hover .button-text {
+  color: #fff;
+}
