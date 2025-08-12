@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Building2, Camera, Shield, Eye, Monitor, Smartphone, Cloud, Settings, CheckCircle, Phone, Mail, MapPin, ArrowRight, Star, Award, Users, Zap, Play, Clock, Home, ArrowLeft } from 'lucide-react';
+import { Menu, X, Building2, Camera, Shield, Eye, Monitor, Smartphone, Cloud, Settings, CheckCircle, Phone, Mail, MapPin, ArrowRight, Star, Award, Users, Zap, Play, Clock, Home as HomeIcon, ArrowLeft } from 'lucide-react';
 
-const CCTVServicePage = () => {
+const CCTVServicePage = ({ setCurrentPage }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
@@ -161,25 +161,39 @@ const CCTVServicePage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-                <Building2 className="w-7 h-7 text-white" />
-              </div>
-              <div>
-                <span className="text-2xl font-bold text-gray-900">HS Infratech</span>
-                <div className="text-xs text-blue-600 font-medium">Infrastructure Solutions</div>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => {
+                    if (window.history && window.history.length > 1) {
+                      window.history.back();
+                    } else if (setCurrentPage) {
+                      setCurrentPage('home');
+                    }
+                    window.scrollTo({ top: 0, behavior: 'auto' });
+                  }}
+                  className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
+                >
+                  <ArrowLeft className="w-5 h-5" />
+                  <span className="hidden sm:inline">Back</span>
+                </button>
+                <button
+                  onClick={() => { window.scrollTo({ top: 0, behavior: 'auto' }); setCurrentPage && setCurrentPage('home'); }}
+                  className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
+                >
+                  <HomeIcon className="w-5 h-5" />
+                  <span className="hidden sm:inline">Home</span>
+                </button>
               </div>
             </div>
 
+            {/* Removed top menu links; keep only CTA to form if needed */}
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors font-medium flex items-center gap-2">
-                <Home className="w-4 h-4" />
+              <button onClick={() => setCurrentPage && setCurrentPage('home')} className="text-gray-700 hover:text-blue-600 transition-colors font-medium flex items-center gap-2">
+                <HomeIcon className="w-4 h-4" />
                 Home
-              </a>
-              <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">About</a>
-              <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Services</a>
-              <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Contact</a>
-              <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
-                Get Quote
+              </button>
+              <button onClick={() => setCurrentPage && setCurrentPage('consultation-form')} className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                Get Consultation
               </button>
             </div>
 
@@ -208,21 +222,8 @@ const CCTVServicePage = () => {
         )}
       </nav>
 
-      {/* Breadcrumb */}
-      <section className="pt-24 pb-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center space-x-2 text-sm text-gray-600">
-            <a href="#home" className="hover:text-blue-600">Home</a>
-            <span>/</span>
-            <a href="#services" className="hover:text-blue-600">Services</a>
-            <span>/</span>
-            <span className="text-blue-600">CCTV Systems</span>
-          </div>
-        </div>
-      </section>
-
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+      <section className="relative pt-20 pb-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -234,13 +235,10 @@ const CCTVServicePage = () => {
                 Protect your property with our state-of-the-art CCTV surveillance solutions. HD cameras, remote monitoring, and 24/7 support for complete peace of mind.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-medium hover:bg-gray-100 transition-colors flex items-center justify-center gap-2">
+                <button onClick={() => setCurrentPage && setCurrentPage('consultation-form')} className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg font-medium hover:bg-gray-100 transition-colors flex items-center justify-center gap-2">
                   Get Free Quote <ArrowRight className="w-5 h-5" />
                 </button>
-                <button className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg hover:bg-white hover:text-blue-600 transition-colors flex items-center justify-center gap-2">
-                  <Play className="w-5 h-5" />
-                  Watch Demo
-                </button>
+                
               </div>
             </div>
             <div className="relative">
@@ -342,11 +340,8 @@ const CCTVServicePage = () => {
                       </div>
                     ))}
                   </div>
-                  <button className="learn-more-button w-full">
-                    <span className="circle">
-                      <span className="icon arrow"></span>
-                    </span>
-                    <span className="button-text">Learn More</span>
+                  <button onClick={() => setCurrentPage && setCurrentPage('consultation-form')} className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    Learn More
                   </button>
                 </div>
               </div>
@@ -391,12 +386,7 @@ const CCTVServicePage = () => {
                       </li>
                     ))}
                   </ul>
-                  <button
-                    className={`mt-auto w-full py-3 rounded-lg font-semibold text-sm transition-all duration-300 hover:shadow-md ${pkg.popular
-                        ? 'bg-blue-600 text-white hover:bg-blue-700'
-                        : 'border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white'
-                      }`}
-                  >
+                  <button onClick={() => setCurrentPage && setCurrentPage('consultation-form')} className="mt-auto w-full py-3 rounded-lg font-semibold text-sm transition-all duration-300 hover:shadow-md">
                     Choose Package
                   </button>
                 </div>
@@ -472,7 +462,7 @@ const CCTVServicePage = () => {
           </div>
 
           <div className="text-center">
-            <button className="bg-blue-600 text-white px-12 py-4 rounded-lg text-lg hover:bg-blue-700 transition-colors">
+            <button onClick={() => setCurrentPage && setCurrentPage('consultation-form')} className="bg-blue-600 text-white px-12 py-4 rounded-lg text-lg hover:bg-blue-700 transition-colors">
               Get Free CCTV Consultation
             </button>
           </div>

@@ -138,8 +138,8 @@ const PEBStructuresPage = ({ setCurrentPage }) => {
         <p className="text-gray-700 mb-6 max-w-xl mx-auto">
           Contact HS Infratech for a free consultation and site visit. We deliver PEB solutions tailored for Indian businesses and industries.
         </p>
-        <button className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg hover:bg-blue-700 transition-colors font-semibold shadow">
-          Request a Quote
+        <button onClick={() => setCurrentPage && setCurrentPage('consultation-form')} className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg hover:bg-blue-700 transition-colors font-semibold shadow">
+          Request Free Consultation
         </button>
       </section>
 
@@ -233,20 +233,20 @@ const PEBStructuresPage = ({ setCurrentPage }) => {
             <div>
               <h3 className="text-lg font-bold mb-4">Services</h3>
               <ul className="space-y-2 text-gray-400">
-                <li>Shed Fabricators</li>
-                <li>PEB Structures</li>
-                <li>IT Networking</li>
-                <li>CCTV Systems</li>
+                <li><button onClick={() => { window.scrollTo({ top: 0, behavior: 'auto' }); setCurrentPage('shed-fabricators'); }} className="hover:text-white transition-colors">Shed Fabricators</button></li>
+                <li><button onClick={() => { window.scrollTo({ top: 0, behavior: 'auto' }); setCurrentPage('peb-structures'); }} className="hover:text-white transition-colors">PEB Structures</button></li>
+                <li><button onClick={() => { window.scrollTo({ top: 0, behavior: 'auto' }); setCurrentPage('it-networking'); }} className="hover:text-white transition-colors">IT Networking</button></li>
+                <li><button onClick={() => { window.scrollTo({ top: 0, behavior: 'auto' }); setCurrentPage('cctv-service'); }} className="hover:text-white transition-colors">CCTV Systems</button></li>
               </ul>
             </div>
             <div>
               <h3 className="text-lg font-bold mb-4">Contact Info</h3>
               <ul className="space-y-2 text-gray-400">
                 {phoneNumbers.map((num, idx) => (
-                  <li key={idx}>{num}</li>
+                  <li key={idx}><a href={`tel:${num.replace(/\s/g, '')}`} className="hover:text-white transition-colors">{num}</a></li>
                 ))}
-                <li>{emails[0]}</li>
-                <li>Hyderabad, Telangana</li>
+                <li><a href={`mailto:${emails[0]}`} className="hover:text-white transition-colors">{emails[0]}</a></li>
+                <li><a href="https://goo.gl/maps/1234567890abcdef" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Industrial Area, Phase-II, Hyderabad, Telangana 500054</a></li>
               </ul>
             </div>
           </div>

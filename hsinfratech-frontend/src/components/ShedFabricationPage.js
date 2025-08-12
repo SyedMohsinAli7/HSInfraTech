@@ -142,13 +142,29 @@ const ShedFabricationPage = ({ setCurrentPage }) => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center py-4">
                         <div className="flex items-center space-x-3">
-                            <button
-                                onClick={() => setCurrentPage('home')}
-                                className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
-                            >
-                                <ArrowLeft className="w-5 h-5" />
-                                <span className="hidden sm:inline">Back to Home</span>
-                            </button>
+                            <div className="flex items-center gap-3">
+                                <button
+                                    onClick={() => {
+                                        if (setCurrentPage) {
+                                            setCurrentPage('home');
+                                        } else if (window.history && window.history.length > 1) {
+                                            window.history.back();
+                                        }
+                                        window.scrollTo({ top: 0, behavior: 'auto' });
+                                    }}
+                                    className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
+                                >
+                                    <ArrowLeft className="w-5 h-5" />
+                                    <span className="hidden sm:inline">Back</span>
+                                </button>
+                                <button
+                                    onClick={() => { window.scrollTo({ top: 0, behavior: 'auto' }); setCurrentPage && setCurrentPage('home'); }}
+                                    className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
+                                >
+                                    <Home className="w-5 h-5" />
+                                    <span className="hidden sm:inline">Home</span>
+                                </button>
+                            </div>
                         </div>
 
                         <div className="flex items-center space-x-3">
@@ -192,10 +208,13 @@ const ShedFabricationPage = ({ setCurrentPage }) => {
                                     Expert fabrication of industrial, warehouse, and commercial sheds with superior engineering and quality materials. Built to last, delivered on time.
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-4">
-                                    <button className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+                                    <button onClick={() => setCurrentPage && (sessionStorage.setItem('prevPage', 'shed-fabricators'), setCurrentPage('consultation-form'))} className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
                                         Request Quote <ArrowRight className="w-5 h-5" />
                                     </button>
-                                    <button className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg hover:bg-white hover:text-gray-900 transition-colors">
+                                    <button onClick={() => {
+                                        const el = document.getElementById('our-shed-solutions');
+                                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                                    }} className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg hover:bg-white hover:text-gray-900 transition-colors">
                                         View Shed Solutions
                                     </button>
                                 </div>
@@ -249,7 +268,7 @@ const ShedFabricationPage = ({ setCurrentPage }) => {
             </section>
 
             {/* Shed Types Section */}
-            <section className="py-20 px-4 sm:px-6 lg:px-8">
+            <section id="our-shed-solutions" className="py-20 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
                         <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Shed Solutions</h2>
@@ -303,7 +322,7 @@ const ShedFabricationPage = ({ setCurrentPage }) => {
                                 </div>
                             </div>
 
-                            <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                            <button onClick={() => setCurrentPage && (sessionStorage.setItem('prevPage', 'shed-fabricators'), setCurrentPage('consultation-form'))} className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">
                                 Get Custom Quote
                             </button>
                         </div>
@@ -392,10 +411,10 @@ const ShedFabricationPage = ({ setCurrentPage }) => {
                         Get a free consultation and detailed quote for your custom shed fabrication requirements.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg hover:bg-gray-100 transition-colors font-bold">
+                        <button onClick={() => setCurrentPage && (sessionStorage.setItem('prevPage', 'shed-fabricators'), setCurrentPage('consultation-form'))} className="bg-white text-blue-600 px-8 py-4 rounded-lg text-lg hover:bg-gray-100 transition-colors font-bold">
                             Schedule Consultation
                         </button>
-                        <button className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg hover:bg-white hover:text-blue-600 transition-colors font-bold">
+                        <button onClick={() => setCurrentPage && (sessionStorage.setItem('prevPage', 'shed-fabricators'), setCurrentPage('consultation-form'))} className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg hover:bg-white hover:text-blue-600 transition-colors font-bold">
                             Call: +91 98765 43210
                         </button>
                     </div>

@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Home, User, Mail, Phone, Building, FileText, DollarSign, Send, CheckCircle } from 'lucide-react';
 
 const ConsultationForm = ({ setCurrentPage }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -102,10 +105,24 @@ const ConsultationForm = ({ setCurrentPage }) => {
             Your consultation request has been submitted successfully. We'll get back to you within 24 hours.
           </p>
           <button
-            onClick={() => setCurrentPage('home')}
+            onClick={() => {
+              const prev = sessionStorage.getItem('prevPage');
+              if (prev && setCurrentPage) {
+                setCurrentPage(prev);
+                sessionStorage.removeItem('prevPage');
+                return;
+              }
+              if (setCurrentPage) {
+                setCurrentPage('home');
+                return;
+              }
+              if (window.history && window.history.length > 1) {
+                window.history.back();
+              }
+            }}
             className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
           >
-            Back to Home
+            Back
           </button>
         </div>
       </div>
@@ -119,7 +136,21 @@ const ConsultationForm = ({ setCurrentPage }) => {
         <div className="flex items-center gap-4">
           <button
             className="flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium"
-            onClick={() => setCurrentPage('home')}
+            onClick={() => {
+              const prev = sessionStorage.getItem('prevPage');
+              if (prev && setCurrentPage) {
+                setCurrentPage(prev);
+                sessionStorage.removeItem('prevPage');
+                return;
+              }
+              if (setCurrentPage) {
+                setCurrentPage('home');
+                return;
+              }
+              if (window.history && window.history.length > 1) {
+                window.history.back();
+              }
+            }}
           >
             <ArrowLeft className="w-5 h-5" /> Back
           </button>

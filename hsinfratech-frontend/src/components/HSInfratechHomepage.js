@@ -141,7 +141,10 @@ const HSInfratechHomepage = ({ setCurrentPage }) => {
                             <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">About</a>
                             <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Services</a>
                             <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Contact</a>
-                            <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                            <button
+                                onClick={() => setCurrentPage('consultation-form')}
+                                className="bg-blue-600 text-white px-12 py-4 rounded-lg text-lg hover:bg-blue-700 transition-colors"
+                            >
                                 Get Quote
                             </button>
                         </div>
@@ -334,7 +337,10 @@ const HSInfratechHomepage = ({ setCurrentPage }) => {
                                     key={index}
                                     className="service-hover-effect bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
                                     onClick={() => {
-                                        if (route) setCurrentPage(route);
+                                        if (route) {
+                                            window.scrollTo({ top: 0, behavior: 'auto' });
+                                            setCurrentPage(route);
+                                        }
                                     }}
                                 >
                                     <div className="relative h-48">
@@ -387,12 +393,12 @@ const HSInfratechHomepage = ({ setCurrentPage }) => {
                         ].map((item, index) => {
                             const IconComponent = item.icon;
                             return (
-                                <div key={index} className="text-center">
-                                    <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                                        <IconComponent className="w-8 h-8 text-blue-600" />
+                                <div key={index} className="why-card text-center">
+                                    <div className="why-icon">
+                                        <IconComponent className="w-8 h-8" />
                                     </div>
-                                    <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
-                                    <p className="text-gray-600">{item.desc}</p>
+                                    <h3 className="why-title text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
+                                    <p className="why-desc text-gray-600">{item.desc}</p>
                                 </div>
                             );
                         })}
@@ -432,7 +438,7 @@ const HSInfratechHomepage = ({ setCurrentPage }) => {
                     </div>
 
                     <div className="text-center">
-                        <button 
+                        <button
                             onClick={() => setCurrentPage('consultation-form')}
                             className="bg-blue-600 text-white px-12 py-4 rounded-lg text-lg hover:bg-blue-700 transition-colors"
                         >
@@ -463,10 +469,10 @@ const HSInfratechHomepage = ({ setCurrentPage }) => {
                         <div>
                             <h3 className="text-lg font-bold mb-4">Services</h3>
                             <ul className="space-y-2 text-gray-400">
-                                <li className="hover:text-white cursor-pointer" onClick={() => setCurrentPage('shed-fabricators')}>Shed Fabricators</li>
-                                <li className="hover:text-white cursor-pointer" onClick={() => setCurrentPage('peb-structures')}>PEB Structures</li>
-                                <li className="hover:text-white cursor-pointer" onClick={() => setCurrentPage('it-networking')}>IT Networking</li>
-                                <li className="hover:text-white cursor-pointer" onClick={() => setCurrentPage('cctv-service')}>CCTV Systems</li>
+                                <li className="hover:text-white cursor-pointer" onClick={() => { window.scrollTo({ top: 0, behavior: 'auto' }); setCurrentPage('shed-fabricators'); }}>Shed Fabricators</li>
+                                <li className="hover:text-white cursor-pointer" onClick={() => { window.scrollTo({ top: 0, behavior: 'auto' }); setCurrentPage('peb-structures'); }}>PEB Structures</li>
+                                <li className="hover:text-white cursor-pointer" onClick={() => { window.scrollTo({ top: 0, behavior: 'auto' }); setCurrentPage('it-networking'); }}>IT Networking</li>
+                                <li className="hover:text-white cursor-pointer" onClick={() => { window.scrollTo({ top: 0, behavior: 'auto' }); setCurrentPage('cctv-service'); }}>CCTV Systems</li>
                             </ul>
                         </div>
                         <div>
