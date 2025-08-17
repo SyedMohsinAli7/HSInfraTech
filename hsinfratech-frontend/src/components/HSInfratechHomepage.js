@@ -137,10 +137,22 @@ const HSInfratechHomepage = ({ setCurrentPage }) => {
                         </div>
 
                         <div className="hidden md:flex items-center space-x-8">
-                            <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Home</a>
-                            <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">About</a>
-                            <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Services</a>
-                            <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Contact</a>
+                            <button onClick={() => {
+                                const el = document.getElementById('home');
+                                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                            }} className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Home</button>
+                            <button onClick={() => {
+                                const el = document.getElementById('about');
+                                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                            }} className="text-gray-700 hover:text-blue-600 transition-colors font-medium">About</button>
+                            <button onClick={() => {
+                                const el = document.getElementById('services');
+                                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                            }} className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Services</button>
+                            <button onClick={() => {
+                                const el = document.getElementById('contact');
+                                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                            }} className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Contact</button>
                             <button
                                 onClick={() => setCurrentPage('consultation-form')}
                                 className="bg-blue-600 text-white px-12 py-4 rounded-lg text-lg hover:bg-blue-700 transition-colors"
@@ -162,11 +174,30 @@ const HSInfratechHomepage = ({ setCurrentPage }) => {
                 {isMenuOpen && (
                     <div className="md:hidden bg-white border-t">
                         <div className="px-4 py-4 space-y-4">
-                            <a href="#home" className="block text-gray-700 hover:text-blue-600 py-2">Home</a>
-                            <a href="#about" className="block text-gray-700 hover:text-blue-600 py-2">About</a>
-                            <a href="#services" className="block text-gray-700 hover:text-blue-600 py-2">Services</a>
-                            <a href="#contact" className="block text-gray-700 hover:text-blue-600 py-2">Contact</a>
-                            <button className="w-full bg-blue-600 text-white px-6 py-2 rounded-lg">
+                            <button onClick={() => {
+                                const el = document.getElementById('home');
+                                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                                setIsMenuOpen(false);
+                            }} className="block text-gray-700 hover:text-blue-600 py-2 w-full text-left">Home</button>
+                            <button onClick={() => {
+                                const el = document.getElementById('about');
+                                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                                setIsMenuOpen(false);
+                            }} className="block text-gray-700 hover:text-blue-600 py-2 w-full text-left">About</button>
+                            <button onClick={() => {
+                                const el = document.getElementById('services');
+                                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                                setIsMenuOpen(false);
+                            }} className="block text-gray-700 hover:text-blue-600 py-2 w-full text-left">Services</button>
+                            <button onClick={() => {
+                                const el = document.getElementById('contact');
+                                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                                setIsMenuOpen(false);
+                            }} className="block text-gray-700 hover:text-blue-600 py-2 w-full text-left">Contact</button>
+                            <button onClick={() => {
+                                setCurrentPage('consultation-form');
+                                setIsMenuOpen(false);
+                            }} className="w-full bg-blue-600 text-white px-6 py-2 rounded-lg">
                                 Get Quote
                             </button>
                         </div>

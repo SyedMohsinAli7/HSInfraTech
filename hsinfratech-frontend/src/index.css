@@ -29,9 +29,9 @@ code {
 .service-hover-effect .service-hover-overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.7);
   color: #fff;
-  opacity: 0;
+  opacity: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,10 +42,7 @@ code {
   text-align: center;
 }
 .service-hover-effect:hover img {
-  transform: scale(1.1);
-}
-.service-hover-effect:hover .service-hover-overlay {
-  opacity: 1;
+  transform: scale(1.05);
 }
 
 /* Caption Hover Effect (Effect 6 - Codrops) for Contact Cards */

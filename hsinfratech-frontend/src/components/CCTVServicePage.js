@@ -307,7 +307,7 @@ const CCTVServicePage = ({ setCurrentPage }) => {
       </section>
 
       {/* Solutions Section */}
-      <section className="py-20">
+      <section id="cctv-solutions" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Our CCTV Solutions</h2>
@@ -318,7 +318,7 @@ const CCTVServicePage = ({ setCurrentPage }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {cctvSolutions.map((solution, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+              <div key={index} id={`${solution.title.toLowerCase().replace(/\s+/g, '-')}`} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
                 <div className="relative h-48">
                   <img
                     src={solution.image}
@@ -490,10 +490,18 @@ const CCTVServicePage = ({ setCurrentPage }) => {
             <div>
               <h3 className="text-lg font-bold mb-4">CCTV Services</h3>
               <ul className="space-y-2 text-gray-400">
-                <li>Residential CCTV</li>
-                <li>Commercial CCTV</li>
-                <li>Industrial CCTV</li>
-                <li>Remote Monitoring</li>
+                <li><button onClick={() => {
+                  const el = document.getElementById('residential-cctv');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }} className="hover:text-white transition-colors">Residential CCTV</button></li>
+                <li><button onClick={() => {
+                  const el = document.getElementById('commercial-cctv');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }} className="hover:text-white transition-colors">Commercial CCTV</button></li>
+                <li><button onClick={() => {
+                  const el = document.getElementById('industrial-cctv');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }} className="hover:text-white transition-colors">Industrial CCTV</button></li>
               </ul>
             </div>
             <div>
